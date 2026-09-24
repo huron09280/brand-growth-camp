@@ -208,7 +208,7 @@
             border: 1px solid var(--border-color);
             border-radius: 12px;
             box-shadow: var(--slide-shadow);
-            padding: 32px 42px;
+            padding: 26px 36px;
             display: flex;
             flex-direction: column;
             gap: 16px;
@@ -450,10 +450,8 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            overflow-y: auto;
-            max-height: 630px;
-            padding-right: 6px;
+            gap: 10px;
+            min-width: 0;
         }
         .slide-digital-content::-webkit-scrollbar {
             width: 5px;
@@ -1332,6 +1330,130 @@
             .ot-track { grid-template-columns: 1fr !important; }
             .rhythm-track { flex-direction: column; }
         }
+    
+        /* 5 COLUMNS & RESPONSIVE GRIDS */
+        .grid-container.cols-5, .cols-5 {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 10px;
+        }
+        @media (max-width: 1100px) {
+            .grid-container.cols-5, .cols-5 {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+        @media (max-width: 768px) {
+            .grid-container.cols-5, .cols-5 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* TABLE RESPONSIVE & COMPACT STYLING */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 6px 0;
+            border-radius: 6px;
+        }
+        .authentic-table th {
+            padding: 8px 12px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        .authentic-table td {
+            padding: 6px 12px;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        /* UTILITY CLASSES */
+        .text-muted {
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+        .decision-details {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+        .badge-pill {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 9999px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .top-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        .cat-page-code, .cat-page-num {
+            font-size: 11.5px;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+        }
+        .slide-cover-style {
+            background: #0b0f19;
+        }
+        .slide-paper-style {
+            background: transparent;
+        }
+
+        /* COLLAPSIBLE HANDWRITTEN NOTES */
+        details.handwritten-notes-section {
+            background: #fffdf5;
+            border: 1.5px dashed #f59e0b;
+            border-radius: 8px;
+            padding: 8px 14px;
+            margin-top: 10px;
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.05);
+            transition: all 0.2s ease;
+        }
+        [data-theme="dark"] details.handwritten-notes-section {
+            background: #1c1a16;
+            border-color: #b45309;
+        }
+        details.handwritten-notes-section summary {
+            cursor: pointer;
+            list-style: none;
+            user-select: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        details.handwritten-notes-section summary::-webkit-details-marker {
+            display: none;
+        }
+        .hn-toggle-arrow {
+            font-size: 11px;
+            font-weight: 700;
+            color: #b45309;
+            background: #fef3c7;
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid #fde68a;
+        }
+        [data-theme="dark"] .hn-toggle-arrow {
+            background: #362512;
+            color: #f59e0b;
+            border-color: #78350f;
+        }
+        details.handwritten-notes-section[open] .hn-list {
+            margin-top: 10px;
+            border-top: 1px solid rgba(245, 158, 11, 0.25);
+            padding-top: 8px;
+        }
+
     </style>
 </head>
 <body class="width-wide">
@@ -1529,18 +1651,21 @@
     </div>
     
                     
-        <div class="handwritten-notes-section">
-            <div class="hn-header">
+        <details class="handwritten-notes-section">
+            <summary class="hn-header">
                 <div class="hn-title-box">
                     <span class="hn-icon">✍️</span>
                     <span class="hn-title">现场学员手写笔记 · 随堂批注</span>
                 </div>
-                <span class="hn-count-badge">收录 1 处实战笔迹</span>
-            </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span class="hn-count-badge">收录 1 处实战笔迹</span>
+                    <span class="hn-toggle-arrow">点击展开批注</span>
+                </div>
+            </summary>
             <ul class="hn-list">
                 <li>【红笔标注】在正文第2行「定增量 × 定流量场 × 定成交 × 定验证线」左侧行首批注：「<span class='hn-red-ink'>10倍高潜业务</span>:」</li>
             </ul>
-        </div>
+        </details>
         
                 </div>
                 
@@ -1698,18 +1823,21 @@
     </div>
     
                     
-        <div class="handwritten-notes-section">
-            <div class="hn-header">
+        <details class="handwritten-notes-section">
+            <summary class="hn-header">
                 <div class="hn-title-box">
                     <span class="hn-icon">✍️</span>
                     <span class="hn-title">现场学员手写笔记 · 随堂批注</span>
                 </div>
-                <span class="hn-count-badge">收录 18 处实战笔迹</span>
-            </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span class="hn-count-badge">收录 18 处实战笔迹</span>
+                    <span class="hn-toggle-arrow">点击展开批注</span>
+                </div>
+            </summary>
             <ul class="hn-list">
                 <li>【左侧边缘斜向手写】「<span class='hn-red-ink'>外层广告</span>」「<span class='hn-red-ink'>直接跳天猫</span>」</li><li>【定成交卡片内黑笔标注】在「输出：唯一主成交场」框右侧手写批注：「阿里外投」</li><li>【演变图下方左侧小标题】「外部环境/平台环境」</li><li>【平台环境演变要点】「22年 直接发就有流量，需要更多的达人和商家，所以流量高。」</li><li>【平台环境演变要点】「平台供给和需求发生变化，要分好流」</li><li>【平台环境演变要点】「千川放量，聚光不放量？ 确定性」</li><li>【平台环境演变要点】「23年 买手电商开始」</li><li>【平台环境演变要点】「24年 抢全域 （小红书天猫协同）」</li><li>【左侧组件小标题】「挂组件」</li><li>【挂组件实施<span class='hn-red-ink'>方式1</span>】「<span class='hn-red-ink'>方式1</span>：小红书跑自闭环（内容，验证素材确定性） 给天猫能带来 10%—30%销量」</li><li>【<span class='hn-red-ink'>方式1</span>手绘路径】「跑出内容→走的最短路径 ↑（箭头指向给天猫能带来10%-30%销量）」</li><li>【挂组件实施<span class='hn-red-ink'>方式2</span>】「<span class='hn-red-ink'>方式2</span>：从小红书外投，跑CID/UD，看素材确定性，再投聚光放大」</li><li>【成交路径选择原则】「选择方式 取决于 你的用户在哪里成交.」</li><li>【25年右侧边缘批注】「内容体验」「内容传播更好」「主体（闭环」</li><li>【25年私域与精细化运营笔记】「25年 抢用户资产：要做小红书精细化运营，做私域很重要」</li><li>【26年<span class='hn-red-ink'>造梦体系</span>笔记】「26年 <span class='hn-red-ink'>造梦体系</span>：跟一个具体的人沟通，让人看到具体生活的切片、希望笔记高质量，符合小红书」</li><li>【红笔造梦底层公式】「人群 / 场景 × 爆款元素 × 未出口情绪 × 渴望画面 × 证据链 × 背书 × <span class='hn-red-ink'>大促节点</span>」</li><li>【底栏居中红笔手写金句】「<span class='hn-red-ink'>让用户看到向往的生活</span>」</li>
             </ul>
-        </div>
+        </details>
         
                 </div>
                 
@@ -1799,18 +1927,21 @@
     </div>
     
                     
-        <div class="handwritten-notes-section">
-            <div class="hn-header">
+        <details class="handwritten-notes-section">
+            <summary class="hn-header">
                 <div class="hn-title-box">
                     <span class="hn-icon">✍️</span>
                     <span class="hn-title">现场学员手写笔记 · 随堂批注</span>
                 </div>
-                <span class="hn-count-badge">收录 10 处实战笔迹</span>
-            </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span class="hn-count-badge">收录 10 处实战笔迹</span>
+                    <span class="hn-toggle-arrow">点击展开批注</span>
+                </div>
+            </summary>
             <ul class="hn-list">
                 <li>【红笔波浪线】在小标题「KFS变形：把达人当素材供应商，投流最大化」下方有红笔画线强调</li><li>【黑色下划线】在「把复杂的达人沟通和内容创意，简化成一个工业化的素材生产和投放流程」中给「工业化的素材生产和投放流程」画了黑色下划线</li><li>【评论区精细化运营批注】在「评论区不一样的用户视角评论——提高转化率，不只是简单维护」右侧手写批注：「<span class='hn-red-ink'>微瑕疵</span>」（真实用户评论要有微小瑕疵才具可信度）</li><li>【蓝海提示旁红笔标注】在蓝海机会提示右侧手写红笔批注：「<span class='hn-red-ink'>达人合作过程管理</span>」</li><li>【底部路径对比-<span class='hn-red-ink'>传统路径</span>】「<span class='hn-red-ink'>传统路径</span>    种草收割    赌素材确定性（红笔标注）」</li><li>【底部路径对比-<span class='hn-red-ink'>新路径</span>】「<span class='hn-red-ink'>新路径</span>：降低K    多投流        脚本 / 内容模板 | 过程管理」</li><li>【素材迭代笔记-素材1.0】「素材1.0 文案功效最高，吸引人群」</li><li>【素材要素拆解】「封面和标题最重要，标题有画面，图片有产品    描述」</li><li>【右侧手写品类括号示例】「(猫 / 洗发水）」</li><li>【素材迭代笔记-素材3.0】「素材3.0 拍生活切片切入，向往的方向，场景是高频场景.」</li>
             </ul>
-        </div>
+        </details>
         
                 </div>
                 
@@ -1936,18 +2067,21 @@
     </div>
     
                     
-        <div class="handwritten-notes-section">
-            <div class="hn-header">
+        <details class="handwritten-notes-section">
+            <summary class="hn-header">
                 <div class="hn-title-box">
                     <span class="hn-icon">✍️</span>
                     <span class="hn-title">现场学员手写笔记 · 随堂批注</span>
                 </div>
-                <span class="hn-count-badge">收录 10 处实战笔迹</span>
-            </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span class="hn-count-badge">收录 10 处实战笔迹</span>
+                    <span class="hn-toggle-arrow">点击展开批注</span>
+                </div>
+            </summary>
             <ul class="hn-list">
                 <li>【02定流量场标题旁手写】「成交在天猫？搜截流 还是发现页」</li><li>【02定流量场右侧手绘逻辑链】「群卡位」→「回发现页 / 搜索页做人」→「唤醒需求 / 通过人群切片」→「激活，然后去天猫」→「下单」</li><li>【02定流量场下方手写笔记】「高单价品类做发现页，70%做发现页，激活购买需求」</li><li>【04定验证线标题旁手写】「发3-500篇，看这篇笔记有多少proof」</li><li>【04定验证线第①点旁手写批注】在「看CTR、互动/CES、收藏」旁手写：「<span class='hn-red-ink'>团队有没有用心做</span>」</li><li>【04定验证线第②点旁手写圈注】在「看进店、加购」右侧手写加注：「看加购和成交、商品访客」</li><li>【04定验证线第④点旁手写】在生意证据右侧手写：「看了你的笔记 就去天猫 搜索」</li><li>【03定成交输出框下方手写笔记】「从用户出发，用户最常在哪里买，测试并利用」</li><li>【最底部投放策略手写-第1条】「3. 跑闭环 / CID 同步跑  AI（上面注字：集/条）」</li><li>【最底部投放策略手写-第2条】「1个素材同步做几个计划，测试用户在哪里付钱最顺」</li>
             </ul>
-        </div>
+        </details>
         
                 </div>
                 
